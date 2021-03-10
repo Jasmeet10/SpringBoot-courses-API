@@ -18,11 +18,11 @@ public class CourseService {
 //    ));
 
 
-    public List<Courses> getAllCourses(){
+    public List<Courses> getAllCourses(String topicId){
        // return com.example.courseapi.topics;
-        List<Courses> t = new ArrayList<>();
-        courseRepo.findAll().forEach(t :: add);
-        return t;
+        List<Courses> courses = new ArrayList<>();
+        courseRepo.findByTopicId(topicId).forEach(courses :: add);
+        return courses;
     }
     public Courses getCourses(String id){
          return courseRepo.findById(id).get();
@@ -35,7 +35,7 @@ public class CourseService {
         courseRepo.save(course);
     }
 
-    public void updateCourse(Courses course, String id) {
+    public void updateCourse(Courses course) {
 //       for(int i = 0; i< com.example.courseapi.topics.size();i++){
 //           Topics t = com.example.courseapi.topics.get(i);
 //           if(t.getId().equals(id)){

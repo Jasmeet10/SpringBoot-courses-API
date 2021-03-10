@@ -1,7 +1,10 @@
 package com.example.courseapi.Courses;
 
+import com.example.courseapi.topics.Topics;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Courses {
@@ -11,13 +14,26 @@ public class Courses {
     private String name;
     private String description;
 
+    @ManyToOne
+    private Topics topic;
+
     public Courses() {
     }
 
-    public Courses(String id, String name, String description) {
+    public Courses(String id, String name, String description,String topicId) {
         this.id = id;
         this.name = name;
         this.description = description;
+        this.topic = new Topics(topicId,"","");
+    }
+
+
+    public Topics getTopic() {
+        return topic;
+    }
+
+    public void setTopic(Topics topic) {
+        this.topic = topic;
     }
 
     public void setId(String id) {
